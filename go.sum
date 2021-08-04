@@ -1,0 +1,8 @@
+github.com/TV4/graceful v0.3.5 h1:cNE7s4SlhjeLrxyXSraWyBMJMzlV7oiU8PlJ7SBhoiA=
+github.com/TV4/graceful v0.3.5/go.mod h1:yiVys+AUIzvRhlIcVhJNhBKM7KG0y2US9ETBo9TusFk=
+github.com/ant0ine/go-json-rest v3.3.2+incompatible h1:nBixrkLFiDNAW0hauKDLc8yJI6XfrQumWvytE1Hk14E=
+github.com/ant0ine/go-json-rest v3.3.2+incompatible/go.mod h1:q6aCt0GfU6LhpBsnZ/2U+mwe+0XB5WStbmwyoPfc+sk=
+github.com/g8rswimmer/go-twitter v1.1.4 h1:H1Fezm1/Sui6uYb2kXREZPvEae6Nx91j6X5GdhRssXs=
+github.com/g8rswimmer/go-twitter v1.1.4/go.mod h1:/6ZcU70I0EMkL0Zu1iABzKfE4E2oCvDUL2LZVQexLIA=
+github.com/joho/godotenv v1.3.0 h1:Zjp+RcGpHhGlrMbJzXTrZZPrWj+1vfm90La1wgB6Bhc=
+github.com/joho/godotenv v1.3.0/go.mod h1:7hK45KPybAkOC6peb+G5yklZfMxEjkZhHbwpqxOKXbg=
