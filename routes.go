@@ -18,6 +18,9 @@ func newAPI() *rest.Api {
 		&rest.JsonIndentMiddleware{},
 		&rest.ContentTypeCheckerMiddleware{},
 		&rest.CorsMiddleware{
+			AccessControlAllowCredentials: true,
+			AccessControlMaxAge:           3600,
+			AllowedMethods:                []string{"GET"},
 			OriginValidator: func(origin string, request *rest.Request) bool {
 				return true
 			},

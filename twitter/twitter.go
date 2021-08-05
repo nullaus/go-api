@@ -25,8 +25,14 @@ func (a APIAuthorize) Add(req *http.Request) {
 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", a.Token))
 }
 
+type ResponseRecentTweets struct {
+	Latest   twitter.TweetLookup   `json:"latest"`
+	New      []twitter.TweetLookup `json:"new"`
+	Previous []twitter.TweetLookup `json:"previous"`
+}
+
 // GetRecentTweetsUsingHandle will return the recent tweets for a user handle (`handle`).
-func GetRecentTweetsUsingHandle(handle string, maxResults int) (*twitter.TweetRecentSearch, error) {
+func GetRecentTweetsUsingHandle(handle string, maxResults int) (*ResponseRecentTweets, error) {
 	flag.Parse()
 
 	tweet := &twitter.Tweet{
@@ -37,8 +43,19 @@ func GetRecentTweetsUsingHandle(handle string, maxResults int) (*twitter.TweetRe
 		Host:   "https://api.twitter.com",
 	}
 	fieldOpts := twitter.TweetFieldOptions{
+		Expansions: []twitter.Expansion{twitter.ExpansionAuthorID},
 		TweetFields: []twitter.TweetField{
-			twitter.TweetFieldCreatedAt, twitter.TweetFieldPublicMetrics, twitter.TweetFieldConversationID, twitter.TweetFieldLanguage,
+			twitter.TweetFieldAttachments,
+			twitter.TweetFieldCreatedAt,
+			twitter.TweetFieldConversationID,
+			twitter.TweetFieldLanguage,
+			twitter.TweetFieldPublicMetrics,
+		},
+		UserFields: []twitter.UserField{
+			twitter.UserFieldName,
+			twitter.UserFieldLocation,
+			twitter.UserFieldProfileImageURL,
+			twitter.UserFieldPublicMetrics,
 		},
 	}
 	searchOpts := twitter.TweetRecentSearchOptions{
@@ -54,5 +71,13 @@ func GetRecentTweetsUsingHandle(handle string, maxResults int) (*twitter.TweetRe
 		return nil, err
 	}
 
-	return recentSearch, err
+	response := &ResponseRecentTweets{
+		Latest: recentSearch.LookUps[recentSearch.Meta.NewestID],
+	}
+
+	return response, err
+}
+
+func StoreRecentTweetsUsingHandle(handle string, recent *twitter.TweetRecentSearch) error {
+	return nil
 }
